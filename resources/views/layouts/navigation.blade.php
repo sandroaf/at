@@ -15,9 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+<<<<<<< HEAD
                     <x-nav-link :href="route('contatos.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Contatos') }}
                     </x-nav-link>
+=======
+>>>>>>> b18411c (Projeto Base - Laravel 12 - Breeze - Blade)
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
@@ -76,9 +79,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+<<<<<<< HEAD
             <x-responsive-nav-link :href="route('contatos.index')" :active="request()->routeIs('dashboard')">
                 {{ __('Contatos') }}
             </x-responsive-nav-link>
+=======
+>>>>>>> b18411c (Projeto Base - Laravel 12 - Breeze - Blade)
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
                 {{ __('About') }}
             </x-responsive-nav-link>
