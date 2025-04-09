@@ -24,7 +24,8 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        //
+        // Return the view for creating a new contact
+        return view('contatos.create');
     }
 
     /**
@@ -32,7 +33,24 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telefone' => 'required|string|max:20',
+        ]);
+
+        // Create a new contact
+        $contato = new Contato();
+        $contato->nome = $request->input('nome');
+        $contato->email = $request->input('email');
+        $contato->telefone = $request->input('telefone');
+        $contato->cidade = $request->input('cidade');
+        $contato->estado = $request->input('estado');
+        if ($contato->save()) {
+            // If the contact is saved successfully, redirect to the index page
+            return redirect()->route('contatos.index')->with('success', 'Contato criado com sucesso!');
+        }
     }
 
     /**
@@ -52,7 +70,8 @@ class ContatosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $contato = Contato::findOrFail($id);
+        return view('contatos.edit', compact('contato'));  
     }
 
     /**
@@ -60,7 +79,24 @@ class ContatosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate the request data
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telefone' => 'required|string|max:20',
+        ]);
+
+        // Create a new contact
+        $contato = Contato::findOrFail($id);
+        $contato->nome = $request->input('nome');
+        $contato->email = $request->input('email');
+        $contato->telefone = $request->input('telefone');
+        $contato->cidade = $request->input('cidade');
+        $contato->estado = $request->input('estado');
+        if ($contato->save()) {
+            // If the contact is saved successfully, redirect to the index page
+            return redirect()->route('contatos.index')->with('success', 'Contato criado com sucesso!');
+        }
     }
 
     /**
@@ -68,6 +104,9 @@ class ContatosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $contato = Contato::FindorFail($id);
+        if ($contato->delete()) {
+            return redirect()->route("contatos.index")->with('sucess', 'Contato excluído');
+        }
     }
 }
