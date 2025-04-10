@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\ContatosController;
-=======
->>>>>>> b18411c (Projeto Base - Laravel 12 - Breeze - Blade)
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,12 +12,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-<<<<<<< HEAD
 Route::resource('contatos',ContatosController::class)->middleware(['auth', 'verified']);
 
 
-=======
->>>>>>> b18411c (Projeto Base - Laravel 12 - Breeze - Blade)
 Route::get('/about', function () {
     return view('about');
 })->middleware(['auth', 'verified'])->name('about');
