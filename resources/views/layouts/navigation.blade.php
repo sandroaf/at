@@ -18,6 +18,10 @@
                     <x-nav-link :href="route('contatos.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Contatos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('tipocontatos.index')" :active="request()->routeIs('dashboard')">
+                        {{ __('Tipo Contatos') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
@@ -78,6 +82,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('contatos.index')" :active="request()->routeIs('dashboard')">
                 {{ __('Contatos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tipocontatos.index')" :active="request()->routeIs('dashboard')">
+                {{ __('Tipo Contatos') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
                 {{ __('About') }}

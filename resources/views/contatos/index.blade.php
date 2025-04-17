@@ -8,6 +8,18 @@
             <a href="{{ route('contatos.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Novo Contato
             </a>
+            &nbsp;
+            <form action="{{ url('contatos/search') }}" method="GET" class="inline">
+                <input type="text" name="q" placeholder="Pesquisar..." class="border rounded px-2 py-1">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-4 rounded">
+                    <img src="{{ asset('images/lupa.png') }}" alt="Pesquisar" class="inline w-4 h-4">
+                </button>
+            </form>
+            @if($q !== null)
+                <a href="{{ url('contatos') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">X</a>
+            @endif
+            &nbsp;
+
         </div>
 
     </x-slot>
