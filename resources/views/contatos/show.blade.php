@@ -14,11 +14,14 @@
                     <div class="mb-4">
                         <ul>
                             <li><strong>Id:</strong>{{ $contato->id }}</li>
+                            <li><strong>Tipo contato:</strong>{{ $contato->tipoContato ? $contato->tipoContato->descricao : 'N/A' }}</li>
                             <li><strong>Nome:</strong>{{ $contato->nome }}</li>
                             <li><strong>e-mail:</strong><a href="mailto:{{ $contato->email }}" class="hover:underline to-blue-950">{{ $contato->email }}</a></li>
                             <li><strong>Telefone:</strong>{{ $contato->telefone }}</li>
                             <li><strong>Cidade:</strong>{{ $contato->cidade }}</li>
                             <li><strong>Estado:</strong>{{ $contato->estado }}</li>
+                            <li><strong>Data de criação:</strong>{{ $contato->created_at }}</li>
+                            <li><strong>Data de atualização:</strong>{{ $contato->updated_at }}</li>
                         </ul>
                     </div>
                     <div class="mb-4">

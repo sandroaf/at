@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contato; // Import the Contato model
+use App\Models\TipoContato; // Import the TipoContato model
 
 class ContatosController extends Controller
 {
@@ -26,7 +27,8 @@ class ContatosController extends Controller
     public function create()
     {
         // Return the view for creating a new contact
-        return view('contatos.create');
+        $tipocontatos = TipoContato::all();
+        return view('contatos.create', compact('tipocontatos'));
     }
 
     /**
@@ -48,6 +50,7 @@ class ContatosController extends Controller
         $contato->telefone = $request->input('telefone');
         $contato->cidade = $request->input('cidade');
         $contato->estado = $request->input('estado');
+        $contato->tipo_contato_id = $request->input('tipo_contato_id');
         if ($contato->save()) {
             // If the contact is saved successfully, redirect to the index page
             return redirect()->route('contatos.index')->with('success', 'Contato criado com sucesso!');
@@ -85,7 +88,8 @@ class ContatosController extends Controller
     public function edit(string $id)
     {
         $contato = Contato::findOrFail($id);
-        return view('contatos.edit', compact('contato'));
+        $tipocontatos = TipoContato::all();
+        return view('contatos.edit', compact('contato', 'tipocontatos'));
     }
 
     /**
@@ -107,9 +111,10 @@ class ContatosController extends Controller
         $contato->telefone = $request->input('telefone');
         $contato->cidade = $request->input('cidade');
         $contato->estado = $request->input('estado');
+        $contato->tipo_contato_id = $request->input('tipo_contato_id');
         if ($contato->save()) {
             // If the contact is saved successfully, redirect to the index page
-            return redirect()->route('contatos.index')->with('success', 'Contato criado com sucesso!');
+            return redirect()->route('contatos.index')->with('success', 'Contato alterado com sucesso!');
         }
     }
 
@@ -120,7 +125,7 @@ class ContatosController extends Controller
     {
         $contato = Contato::FindorFail($id);
         if ($contato->delete()) {
-            return redirect()->route("contatos.index")->with('sucess', 'Contato excluído');
+            return redirect()->route("contatos.index")->with('success', 'Contato excluído');
         }
     }
 }
