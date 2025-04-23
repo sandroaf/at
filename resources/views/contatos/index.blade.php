@@ -49,8 +49,8 @@
                             &nbsp;-&nbsp;
                             <a href="{{ url("contatos") }}/{{ $contato->id }}/edit" class="bg-green-700 hover:bg-green-900 text-white font-bold py-1 px-2 rounded">Alterar</a>
                             &nbsp;-&nbsp;
-                            <button type="button" class="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-2 rounded"
-                            onclick="if(confirm('Tem certeza que deseja excluir este contato?')) document.getElementById('form-contatos-excluir-{{$contato->id}}').submit()">Excluir</button>
+                            <span class="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-2 rounded cursor-pointer"
+                            onclick="if(confirm('Tem certeza que deseja excluir este contato?')) document.getElementById('form-contatos-excluir-{{$contato->id}}').submit()">Excluir</span>
                             <form id="form-contatos-excluir-{{$contato->id}}" action="{{route('contatos.destroy',$contato->id)}}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')

@@ -25,6 +25,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    @if (session('success'))
+                        <div id="success-message" class="alert alert-success items-center bg-green-500 text-white font-bold py-2 px-4 rounded mb-4">
+                            {{ session('success') }}
+                        </div>
+                        <script>
+                            setTimeout(() => {
+                                const successMessage = document.getElementById('success-message');
+                                if (successMessage) {
+                                    successMessage.style.display = 'none';
+                                }
+                            }, 5000);
+                        </script>
+                    @endif
                     @foreach ($tipocontatos as $tipocontato)
                         <div class="mb-4">
                             <strong onclick="exibe('descricao-{{ $tipocontato->id }}')" class="cursor-pointer">{{ $tipocontato->nome }}</strong>
@@ -32,7 +45,7 @@
                             <a href="{{ url("tipocontatos") }}/{{ $tipocontato->id }}/edit" class="bg-green-700 hover:bg-green-900 text-white font-bold py-1 px-2 rounded">Alterar</a>
                             &nbsp;-&nbsp;
                             <span class="bg-red-700 hover:bg-red-900 text-white font-bold py-1 px-2 rounded cursor-pointer"
-                            onclick="document.getElementById('form-tipocontatos-excluir-{{$tipocontato->id}}').submit()">Excluir</span>
+                            onclick="if(confirm('Tem certeza que deseja excluir este Tipo Contato?')) document.getElementById('form-tipocontatos-excluir-{{$tipocontato->id}}').submit()">Excluir</span>
                             <form id="form-tipocontatos-excluir-{{$tipocontato->id}}" action="{{route('tipocontatos.destroy',$tipocontato->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
