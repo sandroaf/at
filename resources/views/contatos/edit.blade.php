@@ -18,7 +18,7 @@
                             <select name="tipo_contato_id" id="tipo_contato_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                                 <option value="">Selecione</option>
                                 @foreach ($tipocontatos as $tipocontato)
-                                    <option value="{{ $tipocontato->id }}" {{ $contato->tipo_contato_id == $tipocontato->id ? 'selected' : '' }}>{{ $tipocontato->descricao }}</option>
+                                    <option value="{{ $tipocontato->id }}" {{ $contato->tipo_contato_id == $tipocontato->id ? 'selected' : '' }}>{{ $tipocontato->nome }} - {{ $tipocontato->descricao }}</option>
                                 @endforeach
                             </select>
                         </div>

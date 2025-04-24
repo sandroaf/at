@@ -14,7 +14,7 @@
                     <div class="mb-4">
                         <ul>
                             <li><strong>Id:</strong>{{ $contato->id }}</li>
-                            <li><strong>Tipo contato:</strong>{{ $contato->tipoContato ? $contato->tipoContato->descricao : 'N/A' }}</li>
+                            <li><strong>Tipo contato:</strong>{{ $contato->tipoContato ? $contato->tipoContato->nome.' - '.$contato->tipoContato->descricao : 'N/A' }}</li>
                             <li><strong>Nome:</strong>{{ $contato->nome }}</li>
                             <li><strong>e-mail:</strong><a href="mailto:{{ $contato->email }}" class="hover:underline to-blue-950">{{ $contato->email }}</a></li>
                             <li><strong>Telefone:</strong>{{ $contato->telefone }}</li>

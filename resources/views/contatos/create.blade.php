@@ -17,7 +17,7 @@
                             <select name="tipo_contato_id" id="tipo_contato_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                                 <option value="">Selecione</option>
                                 @foreach ($tipocontatos as $tipocontato)
-                                    <option value="{{ $tipocontato->id }}">{{ $tipocontato->descricao }}</option>
+                                    <option value="{{ $tipocontato->id }}">{{ $tipocontato->nome }} - {{ $tipocontato->descricao }}</option>
                                 @endforeach
                             </select>
                         </div>
