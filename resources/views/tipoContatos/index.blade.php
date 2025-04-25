@@ -40,7 +40,7 @@
                     @endif
                     @foreach ($tipocontatos as $tipocontato)
                         <div class="mb-4">
-                            <strong onclick="exibe('descricao-{{ $tipocontato->id }}')" class="cursor-pointer">{{ $tipocontato->nome }}</strong>
+                            <strong onclick="exibe('descricao-{{ $tipocontato->id }}')" class="cursor-pointer" title="Mostrar detalhes">{{ $tipocontato->nome }}</strong>
                             &nbsp;-&nbsp;
                             <a href="{{ url("tipocontatos") }}/{{ $tipocontato->id }}/edit" class="bg-green-700 hover:bg-green-900 text-white font-bold py-1 px-2 rounded">Alterar</a>
                             &nbsp;-&nbsp;
@@ -50,9 +50,30 @@
                                 @csrf
                                 @method('DELETE')
                             </form>
-                            <p id="descricao-{{ $tipocontato->id }}" class="mt-2 text-gray-600 descricao" style="display: none;">
-                                {{ $tipocontato->descricao }}
-                            </p>
+                            <div id="descricao-{{ $tipocontato->id }}" class="mt-2 text-gray-600 descricao" style="display: none;">
+                                {{ $tipocontato->descricao }}:
+                                <!--
+                                    Exibe os contatos relacionados a este tipo de contato
+                                    Se não houver nenhum contato cadastrado para este tipo de contato, exibe mensagem informativa
+                                -->
+                                <ul>
+                                @if ($tipocontato->contatos->isEmpty())
+                                    <li>
+                                        <strong>Não há contatos cadastrados para este tipo de contato.</strong>
+                                        <br><br>
+                                        <a href="{{ route('contatos.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Novo Contato
+                                        </a>
+                                    </li>
+                                @endif
+                                @foreach ($tipocontato->contatos as $contato)
+                                    <li>
+                                        <a href="{{ route('contatos.show', $contato->id) }}" class="hover:bg-blue-900 hover:white hover:text-white rounded-md px-2 py-1"><strong>Contato:</strong> {{ $contato->nome }} - {{ $contato->email }} - {{ $contato->telefone }}</a>
+                                    </li>
+
+                                @endforeach
+                                </ul>
+                            </div>
                         </div>
                     @endforeach
                 </div>
