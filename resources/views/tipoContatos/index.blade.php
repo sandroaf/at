@@ -65,13 +65,13 @@
                                         Novo Contato
                                         </a>
                                     </li>
+                                @else
+                                    @foreach ($tipocontato->contatos as $contato)
+                                        <li>
+                                            <a href="{{ route('contatos.show', $contato->id) }}" class="hover:bg-blue-900 hover:white hover:text-white rounded-md px-2 py-1"><strong>Contato:</strong> {{ $contato->nome }} - {{ $contato->email }} - {{ $contato->telefone }}</a>
+                                        </li>
+                                    @endforeach
                                 @endif
-                                @foreach ($tipocontato->contatos as $contato)
-                                    <li>
-                                        <a href="{{ route('contatos.show', $contato->id) }}" class="hover:bg-blue-900 hover:white hover:text-white rounded-md px-2 py-1"><strong>Contato:</strong> {{ $contato->nome }} - {{ $contato->email }} - {{ $contato->telefone }}</a>
-                                    </li>
-
-                                @endforeach
                                 </ul>
                             </div>
                         </div>
