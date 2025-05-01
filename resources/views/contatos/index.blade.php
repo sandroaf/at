@@ -18,7 +18,9 @@
                     </button>
                 </form>
                 @if($q !== null)
-                    <a href="{{ url('contatos') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">X</a>
+                    <a href="{{ url('contatos') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-4 ml-2 rounded ">
+                        <button class="inline rounded w-4 h-4">X</button>
+                    </a>
                 @endif
                 &nbsp;
             </div>
@@ -56,9 +58,11 @@
                                 @csrf
                                 @method('DELETE')
                             </form>
-
                         </div>
                     @endforeach
+                    <div class="mt-4">
+                        {{ $contatos->links() }}
+                    </div>
                 </div>
             </div>
         </div>
