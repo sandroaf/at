@@ -14,7 +14,8 @@ class ContatosController extends Controller
     public function index()
     {
         // Fetch all contacts from the database
-        $contatos = Contato::paginate(2);
+        //$contatos = Contato::all();
+        $contatos = Contato::paginate(3);
         //$contatos = Contato::simplePaginate(2);
         $q = null;
 
@@ -74,10 +75,16 @@ class ContatosController extends Controller
     {
         $q=$request->input('q');
         // Search for contacts based on the search input
+        /*
         $contatos = Contato::where('nome', 'like', '%' . $request->input('q') . '%')
             ->orWhere('email', 'like', '%' . $request->input('q') . '%')
-            ->paginate(2)
             ->get();
+        */
+
+
+        $contatos = Contato::where('nome', 'like', '%' . $request->input('q') . '%')
+            ->orWhere('email', 'like', '%' . $request->input('q') . '%')
+            ->paginate(3);
 
         // Return the view with the search results
         return view('contatos.index', compact('contatos', 'q'));
