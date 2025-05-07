@@ -16,7 +16,7 @@ class TipoContatosController extends Controller
         $tipocontatos = TipoContato::all();
 
         // Return the view with the contact types data
-        return view('tipocontatos.index', compact('tipocontatos'));
+        return view('tipoContatos.index', compact('tipocontatos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TipoContatosController extends Controller
     public function create()
     {
         // Return the view for creating a new contact type
-        return view('tipocontatos.create');
+        return view('tipoContatos.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class TipoContatosController extends Controller
     public function edit(string $id)
     {
         $tipocontato = TipoContato::findOrFail($id);
-        return view('tipocontatos.edit', compact('tipocontato'));
+        return view('tipoContatos.edit', compact('tipocontato'));
     }
 
     /**
