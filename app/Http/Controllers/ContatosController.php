@@ -147,7 +147,8 @@ class ContatosController extends Controller
     {
         $contato = Contato::FindorFail($id);
         if ($contato->delete()) {
-            if (file_exists(public_path('fotos').DIRECTORY_SEPARATOR.$contato->foto)) {
+            if (file_exists(public_path('fotos').DIRECTORY_SEPARATOR.$contato->foto) and $contato->foto != null) {
+                // Delete the photo file from the server
                 unlink(public_path('fotos').DIRECTORY_SEPARATOR.$contato->foto);
             }
             return redirect()->route("contatos.index")->with('success', 'Contato excluído');
