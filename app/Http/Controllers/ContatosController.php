@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contato; // Import the Contato model
 use App\Models\TipoContato; // Import the TipoContato model
+use Dotenv\Store\File\Paths;
 
 class ContatosController extends Controller
 {
@@ -43,6 +44,7 @@ class ContatosController extends Controller
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'telefone' => 'required|string|max:20',
+            'foto' => 'image|max:2048'
         ]);
 
         // Create a new contact
@@ -52,6 +54,11 @@ class ContatosController extends Controller
         $contato->telefone = $request->input('telefone');
         $contato->cidade = $request->input('cidade');
         $contato->estado = $request->input('estado');
+        if ($foto = $request->file('foto')) {
+            $filename = date('YmdHis').$foto->getClientOriginalName();
+            $foto->move(public_path('fotos'),$filename);
+            $contato->foto = $filename;
+        }
         $contato->tipo_contato_id = $request->input('tipo_contato_id');
         if ($contato->save()) {
             // If the contact is saved successfully, redirect to the index page
@@ -111,6 +118,7 @@ class ContatosController extends Controller
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'telefone' => 'required|string|max:20',
+            'foto' => 'image|max:2048',
         ]);
 
         // Create a new contact
@@ -120,6 +128,11 @@ class ContatosController extends Controller
         $contato->telefone = $request->input('telefone');
         $contato->cidade = $request->input('cidade');
         $contato->estado = $request->input('estado');
+        if ($foto = $request->file('foto')) {
+            $filename = date('YmdHis').$foto->getClientOriginalName();
+            $foto->move(public_path('fotos'),$filename);
+            $contato->foto = $filename;
+        }
         $contato->tipo_contato_id = $request->input('tipo_contato_id');
         if ($contato->save()) {
             // If the contact is saved successfully, redirect to the index page
@@ -134,6 +147,9 @@ class ContatosController extends Controller
     {
         $contato = Contato::FindorFail($id);
         if ($contato->delete()) {
+            if (file_exists(public_path('fotos').DIRECTORY_SEPARATOR.$contato->foto)) {
+                unlink(public_path('fotos').DIRECTORY_SEPARATOR.$contato->foto);
+            }
             return redirect()->route("contatos.index")->with('success', 'Contato excluído');
         }
     }

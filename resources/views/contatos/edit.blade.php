@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('contatos.update', $contato->id) }}" method="POST">
+                    <form action="{{ route('contatos.update', $contato->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -49,7 +49,15 @@
                             <input type="text" name="estado" id="estado" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ $contato->estado}}">
                         </div>
 
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Salvar</button>
+                        <div class="mb-4">
+                            <label for="foto" class="block text-gray-700 text-sm font-bold mb-2">Foto: {{ $contato->foto }}</label>
+                            <input type="file" name="foto" id="foto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            @if ( file_exists(public_path('fotos').DIRECTORY_SEPARATOR.$contato->foto) and ($contato->foto != "") )
+                                <img src="{{ asset('fotos').DIRECTORY_SEPARATOR.$contato->foto }}" class="w-80">
+                            @endif
+                        </div>
+                        <br>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Salvar</button>
                     </form>
                 </div>
                 <x-voltar>Voltar</x-voltar>

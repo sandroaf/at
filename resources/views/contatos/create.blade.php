@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('contatos.store') }}" method="POST">
+                    <form action="{{ route('contatos.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
@@ -46,6 +46,11 @@
                         <div class="mb-4">
                             <label for="estado" class="block text-gray-700 text-sm font-bold mb-2">Estado:</label>
                             <input type="text" name="estado" id="estado" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="foto" class="block text-gray-700 text-sm font-bold mb-2">Estado:</label>
+                            <input type="file" name="foto" id="foto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
 
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Salvar</button>

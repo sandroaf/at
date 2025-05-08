@@ -12,6 +12,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="mb-4">
+                        @if ( file_exists(public_path('fotos/').'/'.$contato->foto) and ($contato->foto != "") )
+                           <img src="{{ asset('fotos/').'/'.$contato->foto }}" class="w-80">
+                           <small>{{ $contato->foto }}</small>
+                        @endif
+                    </div>
+                    <div class="mb-4">
                         <ul>
                             <li><strong>Id:</strong>{{ $contato->id }}</li>
                             <li><strong>Tipo contato:</strong>{{ $contato->tipoContato ? $contato->tipoContato->nome.' - '.$contato->tipoContato->descricao : 'N/A' }}</li>
