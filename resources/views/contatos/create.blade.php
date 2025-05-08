@@ -8,6 +8,22 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                @if ($errors->any())
+                    <div id="error-message" class="error-message alert alert-danger items-center bg-red-500 text-white font-bold py-2 px-4 rounded mb-4">                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <script>
+                        setTimeout(() => {
+                            const errorMessage = document.getElementById('error-message');
+                            if (errorMessage) {
+                                errorMessage.style.display = 'none';
+                            }
+                        }, 5000);
+                    </script>
+                @endif
                 <div class="p-6 text-gray-900">
                     <form action="{{ route('contatos.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
