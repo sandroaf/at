@@ -23,7 +23,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('Sobre') }}
+                        {{ __('About') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                 {{ __('Tipo Contatos') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                {{ __('Sobre') }}
+                {{ __('About') }}
             </x-responsive-nav-link>
         </div>
 
