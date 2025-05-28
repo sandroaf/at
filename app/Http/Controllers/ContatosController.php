@@ -154,4 +154,26 @@ class ContatosController extends Controller
             return redirect()->route("contatos.index")->with('success', 'Contato excluído');
         }
     }
+
+    /**
+     * Responseto contact api
+    */
+    public function apiIndex()
+    {
+        // Fetch all contacts from the database
+        $contatos = Contato::all();
+
+        // Return the contacts as a JSON response
+        return response()->json($contatos);
+    }
+
+    public function apiShow($id)
+    {
+        // Find the contact by ID
+        $contato = Contato::findOrFail($id);
+
+        // Return the contact as a JSON response
+        return response()->json($contato);
+    }
+
 }
