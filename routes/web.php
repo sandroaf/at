@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Rotas para gerar e excluir tokens
+    Route::post('/profile/token', [ProfileController::class, 'generateToken'])->name('profile.token.generate');
+    Route::delete('/profile/token', [ProfileController::class, 'revokeToken'])->name('profile.token.revoke');
 });
 
 require __DIR__.'/auth.php';
